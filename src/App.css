@@ -1,0 +1,65 @@
+body{
+  height: 100%;
+  background-color: black;
+  
+}
+
+.Calculator{
+  height: 100%;
+  position: relative;
+}
+
+*:focus {
+  outline: none;
+}
+
+.Keys{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-auto-rows: minmax(100px,auto);
+  width: 99.8%; 
+
+
+}
+.Keys button{
+  background-color: #202020; 
+  color: white; 
+  font-size: 2em;
+  border: none;
+ 
+}
+
+.Keys button:hover{
+  background-color: #232323;
+}
+
+.Screen{
+  position: relative;
+  width: 100%;
+  height: 45vh;
+  outline: none;
+
+}
+
+#screen {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  transform: translate(0, -50%);
+  background-color: black;
+  color:white;
+  font-size: 10vw;
+  text-align: right;
+  border: none;
+
+}
+
+#div,#mul,#min,#add{
+  color: coral;
+}
+
+#eq{
+  background-color: coral;
+}
