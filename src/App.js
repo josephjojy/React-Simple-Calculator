@@ -4,18 +4,25 @@ function App() {
   const textRef = useRef(null)
   const [bracket,setBracket] = useState('(')
   function updateTextBox(e){
-        if(e.target.value == 'ac')
+        if(e.target.value === 'ac'){
+          setBracket('(')
           textRef.current.value = ""
-        else if(e.target.value == 'bk')
+        }
+        else if(e.target.value === 'bk'){
+          if(textRef.current.value.slice(-1)==='(')
+            setBracket('(')
+          if(textRef.current.value.slice(-1)===')')
+            setBracket(')')  
           textRef.current.value = textRef.current.value.substr(0,textRef.current.value.length-1)
-        else if (e.target.value == 'brk')
+        }
+        else if (e.target.value === 'brk')
           {textRef.current.value+=bracket
-            if (bracket == '(')
+            if (bracket === '(')
               setBracket(')');
             else
             setBracket('(');
           }
-        else if(e.target.value=='eq')
+        else if(e.target.value === 'eq')
             textRef.current.value = eval(textRef.current.value);
         else
           textRef.current.value+=e.target.value
