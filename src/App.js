@@ -1,10 +1,12 @@
 import { useRef, useState } from 'react';
 import './App.css';
 function App() {
+  const oper = ["","+","/","%","*"]
   const textRef = useRef(null)
   const [bracket,setBracket] = useState('(')
   function updateTextBox(e){
-        if(e.target.value === 'ac'){
+        if(oper.includes(e.target.value) && !textRef.current.value);
+        else if(e.target.value === 'ac'){
           setBracket('(')
           textRef.current.value = ""
         }
