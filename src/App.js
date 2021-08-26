@@ -2,14 +2,16 @@ import { useRef, useState } from 'react';
 import './App.css';
 function App() {
   const op = ["","+","/","%","*"]
-  const ope = ["%","/","*","-","+","."]
+  const ope = ["%","/","*","-","+"]
   const textRef = useRef(null)
+  const [dot,setDot] = useState(0)
   const [oper,setOper] = useState(0)
   const [bracket,setBracket] = useState('(')
   function updateTextBox(e){
         if(op.includes(e.target.value) && !textRef.current.value);
         else if(e.target.value === 'ac'){
           setBracket('(')
+          setDot(0)
           textRef.current.value = ""
         }
         else if(e.target.value === 'bk'){
@@ -29,12 +31,19 @@ function App() {
         else if(e.target.value === 'eq')
             textRef.current.value = eval(textRef.current.value);
         else{
-          if(!(ope.includes(e.target.value) && oper))
+          if(e.target.value==='.')
+            { if(!dot)
+              {textRef.current.value+=e.target.value    
+              setDot(1)}
+            }  
+          else if(!(ope.includes(e.target.value) && oper))
               textRef.current.value+=e.target.value
           if(ope.includes(e.target.value))
-              setOper(1); 
+              {setOper(1); 
+              setDot(0);}
           else
               setOper(0);      
+          
         }
   }
   return (
