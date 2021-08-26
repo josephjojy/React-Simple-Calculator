@@ -1,11 +1,13 @@
 import { useRef, useState } from 'react';
 import './App.css';
 function App() {
-  const oper = ["","+","/","%","*"]
+  const op = ["","+","/","%","*"]
+  const ope = ["%","/","*","-","+","."]
   const textRef = useRef(null)
+  const [oper,setOper] = useState(0)
   const [bracket,setBracket] = useState('(')
   function updateTextBox(e){
-        if(oper.includes(e.target.value) && !textRef.current.value);
+        if(op.includes(e.target.value) && !textRef.current.value);
         else if(e.target.value === 'ac'){
           setBracket('(')
           textRef.current.value = ""
@@ -26,8 +28,14 @@ function App() {
           }
         else if(e.target.value === 'eq')
             textRef.current.value = eval(textRef.current.value);
-        else
-          textRef.current.value+=e.target.value
+        else{
+          if(!(ope.includes(e.target.value) && oper))
+              textRef.current.value+=e.target.value
+          if(ope.includes(e.target.value))
+              setOper(1); 
+          else
+              setOper(0);      
+        }
   }
   return (
     <div className="Calculator">
